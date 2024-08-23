@@ -45,10 +45,47 @@ app.use('/todos', require('./controllers/todos'));
 // If you wanted to protect ALL routes 
 // app.use('/todos', ensureLoggedIn, require('./controllers/todos'));
 
+const training = {
+  name: 'Dynamic Soccer Training Sessions',
+  isAvailable: true,
+  addressOne: '11536 Bailey Rd, Cornelius, NC  28031',
+  addressTwo: '13789 Beatties Ford Rd, Huntersville, NC  28078',
+  phone: '704.777.3112',
+  sessions: [
+    {
+      name: 'One On One Dynamic Session',
+      players: 'MAX 2 Players',
+      price: 45.00,
+      description: 'A personlized session for your player to develop their skills and game undestanding through experiential activities.'
+    },
+    {
+      name: 'Small Group Dynamic Session',
+      players: 'MAX 8 Players',
+      price: 35.00,
+      description: 'A personlized session that has technical focus, tactical awareness individually and as a team unit'
+    },
+    {
+      name: 'Large Group/Team Dynamic Session',
+      players: 'MAX 24 Players',
+      price: 25.00,
+      description: 'A personlized session for a large group that allows for specific teamwork and tactical awareness'
+    },
+    {
+      name: 'Custom Group Dynamic Session',
+      players: 'TO BE DETERMINED',
+      price: 'TO BE DETERMINED',
+      description: 'Discussed prior to final booking. Determine exact needs and wants.'
+    },
+  ]
+}
 
 // GET / (root/landing page)
-app.get('/', async (req, res) => {
-  res.render('home.ejs');
+app.get('/', (req, res) => {
+  res.render('home.ejs', {training});
+});
+
+app.get('/train', (req, res) => {
+  res.render('train.ejs', {training});
 });
 
 
